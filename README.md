@@ -1,2 +1,2 @@
 # steam-game-description
-Game desription for Steam app clone
+Game description for Steam app clone
