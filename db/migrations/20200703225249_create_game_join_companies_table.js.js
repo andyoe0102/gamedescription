@@ -1,4 +1,4 @@
-// Game-developers join table, since a game can have multiple developers.
+// Game-companies join table, since a game can have multiple companies as their developers and publishers.
 exports.up = function(knex) {
   return knex.raw(
     'CREATE TABLE game_join_companies (' +
