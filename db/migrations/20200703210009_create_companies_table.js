@@ -1,4 +1,4 @@
-// Companies that either develop or public games
+// Companies that either develop or publish games
 exports.up = function (knex) {
   return knex.raw(
     'CREATE TABLE companies (' +
