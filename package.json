@@ -1,0 +1,48 @@
+{
+  "name": "steam-game-description",
+  "version": "1.0.0",
+  "description": "Game description module for Steam app clone",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client:dev": "webpack-dev-server --hot --open --mode development",
+    "server:dev": "nodemon server/index.js",
+    "seed": "npm i -g knex && npm run seed:internal && npm un -g knex",
+    "seed:internal": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "lint": "eslint client/** --fix",
+    "start": "node server/index.js",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FEC-Bell/steam-game-description.git"
+  },
+  "author": "Christina Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FEC-Bell/steam-game-description/issues"
+  },
+  "homepage": "https://github.com/FEC-Bell/steam-game-description#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.3.1",
+    "eslint-config-hackreactor": "github:hackreactor-labs/eslint-config-hackreactor",
+    "faker": "^4.1.0",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
