@@ -10,6 +10,6 @@ app.get('/test', (req, res) => {
   res.status(200).json({ test: 'Server proxy with webpack-dev-server successful' });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server listening on ${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 3005, () => {
+  console.log(`Server listening on ${process.env.PORT || 3005}`);
 });
