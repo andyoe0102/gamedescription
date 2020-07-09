@@ -74,7 +74,7 @@ export const fetchGamePhoto = (gameid) => {
     throw new Error('Invalid game id');
   }
 
-  return fetch('/api/media')
+  return fetch(`/api/media/${gameid}`)
     .then(response => response.json())
     .then(result => {
       // Will's module currently sends string responses instead of JSON. This might change later,
