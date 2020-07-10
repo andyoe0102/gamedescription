@@ -37,7 +37,7 @@ const ReviewsInfo = ({ reviewType, reviews }) => {
       }
       <Reviews>
         <Label>{reviewType[0].toUpperCase() + reviewType.slice(1)} Reviews:</Label>
-        <ReviewRating rating={reviews.summary.split(' ').slice(-1)[0]}>{reviews.summary}&nbsp;</ReviewRating>
+        <ReviewRating rating={reviews.summary ? reviews.summary.split(' ').slice(-1)[0] : 'Mixed'}>{reviews.summary}&nbsp;</ReviewRating>
         <OverflowHidden>{reviewDisplay}</OverflowHidden>
       </Reviews>
     </RelativeParentContainer>
@@ -47,6 +47,17 @@ const ReviewsInfo = ({ reviewType, reviews }) => {
 ReviewsInfo.propTypes = {
   reviewType: PropTypes.string.isRequired,
   reviews: PropTypes.object.isRequired
+};
+
+ReviewsInfo.defaultProps = {
+  reviewType: 'recent',
+  reviews: {
+    summary: 'Mixed',
+    total: 100,
+    percent: 50,
+    positive: 50,
+    negative: 50
+  }
 };
 
 export default ReviewsInfo;
