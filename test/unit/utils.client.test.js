@@ -122,12 +122,12 @@ describe('React client util functions', () => {
 
     let result1 = await fetchGamePhoto(3);
     expect(result1).toStrictEqual({ mediaType: 'carouselPhoto' });
-    expect(global.fetch).toHaveBeenCalledWith('/api/media');
+    expect(global.fetch).toHaveBeenCalledWith('/api/media/3');
     expect(JSON.parse).toHaveBeenCalledWith(JSON.stringify([{ mediaType: 'carouselPhoto' }]));
 
     let result2 = await fetchGamePhoto(3);
     expect(result2).toStrictEqual({});
-    expect(global.fetch).toHaveBeenCalledWith('/api/media');
+    expect(global.fetch).toHaveBeenCalledWith('/api/media/3');
 
     expect(() => fetchGamePhoto(0)).toThrow();
     expect(() => fetchGamePhoto(101)).toThrow();
