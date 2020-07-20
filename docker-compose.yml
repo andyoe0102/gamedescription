@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  steam-game-descriptions:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: steam_game_descriptions
+    container_name: steam_game_descriptions
+    restart: on-failure
+    ports:
+      - '3005:3005'
+    networks:
+      - descriptions-network
+    depends_on:
+      - desc_db
+    links:
+      - desc_db
+    command: ./wait-for.sh desc_db:5433 -- sh -c "npm run seed && exec node server/index.js"
+
+  desc_db:
+    image: postgres:12
+    container_name: desc_db
+    restart: on-failure
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=steam_game_descriptions
+    ports:
+      - '5433:5433'
+    networks:
+      - descriptions-network
+    command: -p 5433
+
+networks:
+  descriptions-network:
+    driver: bridge
+
+volumes:
+  pgdata:
