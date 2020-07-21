@@ -16,7 +16,7 @@ services:
       - desc_db
     links:
       - desc_db
-    command: ./wait-for.sh desc_db:5433 -- sh -c "npm run seed && exec node server/index.js"
+    command: ./scripts/wait-for.sh desc_db:5433 -- sh -c "npm run seed && exec node server/index.js"
 
   desc_db:
     image: postgres:12
