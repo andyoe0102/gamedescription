@@ -1,5 +1,6 @@
 require('dotenv').config();
 const path = require('path');
+const fetch = require('node-fetch');
 const express = require('express');
 const app = express();
 
@@ -25,6 +26,42 @@ app.get('/api/description/:gameid', async (req, res) => {
     console.error(e);
     res.status(500).json({ error: 'Error retrieving game description' });
   }
+});
+
+app.get('/api/media/:gameid', (req, res) => {
+  fetch(`http://ec2-18-188-192-44.us-east-2.compute.amazonaws.com:3004/api/media/${req.params.gameid}`)
+    .then(response => response.json())
+    .then(results => {
+      res.status(200).json(results);
+    })
+    .catch(e => {
+      console.error(e);
+      res.status(500).json({ error: 'Error fetching game media' });
+    });
+});
+
+app.get('/api/reviewcount/recent/:gameid', (req, res) => {
+  fetch(`http://ec2-54-185-79-51.us-west-2.compute.amazonaws.com:3002/api/reviewcount/recent/${req.params.gameid}`)
+    .then(response => response.json())
+    .then(results => {
+      res.status(200).json(results);
+    })
+    .catch(e => {
+      console.error(e)
+      res.status(500).json({ error: 'Error fetching recent review count' });
+    });
+});
+
+app.get('/api/reviewcount/:gameid', (req, res) => {
+  fetch(`http://ec2-54-185-79-51.us-west-2.compute.amazonaws.com:3002/api/reviewcount/${req.params.gameid}`)
+    .then(response => response.json())
+    .then(results => {
+      res.status(200).json(results);
+    })
+    .catch(e => {
+      console.error(e)
+      res.status(500).json({ error: 'Error fetching overallreview count' });
+    });
 });
 
 const server = app.listen(process.env.PORT || 3005, () => {
