@@ -12,49 +12,57 @@ export const fadeOut = keyframes`
 `;
 
 export const TooltipDiv = styled.div`
-  position: absolute;
-  bottom: ${props => props.y || props.y === 0 ? `${props.y}px` : '20px'};
-  left: ${props => props.x || props.x === 0 ? `${props.x}px` : '5px'};
-  padding: 5px;
-  box-sizing: border-box;
-  width: 300px;
-  background: #c2c2c2;
-  color: #3d3d3f;
-  box-shadow: 0 0 4px 0 #000;
-  border-radius: 4px;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
-  font-size: 11.5px;
-  line-height: 12px;
-  display: inline-block;
-  visibility: ${props => props.open ? 'visible' : 'hidden'};
-  animation: ${props => props.open ? fadeIn : fadeOut} 0.1s linear;
-  transition: visibility 0.1s linear;
-  pointer-events: none;
+  #${props => props.theme.rootId} & {
+    position: absolute;
+    bottom: ${props => props.y || props.y === 0 ? `${props.y}px` : '20px'};
+    left: ${props => props.x || props.x === 0 ? `${props.x}px` : '5px'};
+    padding: 5px;
+    box-sizing: border-box;
+    width: 300px;
+    background: #c2c2c2;
+    color: #3d3d3f;
+    box-shadow: 0 0 4px 0 #000;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-size: 11.5px;
+    line-height: 12px;
+    display: inline-block;
+    visibility: ${props => props.open ? 'visible' : 'hidden'};
+    animation: ${props => props.open ? fadeIn : fadeOut} 0.1s linear;
+    transition: visibility 0.1s linear;
+    pointer-events: none;
+  }
 `;
 
 export const RelativeParentContainer = styled.div`
-  position: relative;
-  cursor: default;
+  #${props => props.theme.rootId} & {
+    position: relative;
+    cursor: default;
+  }
 `;
 
 export const Reviews = styled.div`
-  display: flex;
-  line-height: 16px;
-  pointer-events: none;
-  width: inherit;
+  #${props => props.theme.rootId} & {
+    display: flex;
+    line-height: 16px;
+    pointer-events: none;
+    width: inherit;
+  }
 `;
 
 // Positive color: #66c0f4 (Overwhelmingly Positive, Mostly Positive, Very Positive)
 // Mixed color: #b9a06a (Mixed)
 // Negative color: #a34c25 (Overwhelmingly Negative, Mostly Negative, Very Negative)
 export const ReviewRating = styled.div`
-  color: ${props => props.theme[props.rating]};
-  display: inline;
-  white-space: nowrap;
+  #${props => props.colorTheme.rootId} & {
+    color: ${props => props.colorTheme[props.rating]};
+    display: inline;
+    white-space: nowrap;
+  }
 `;
 
 ReviewRating.propTypes = {
@@ -63,7 +71,7 @@ ReviewRating.propTypes = {
 
 ReviewRating.defaultProps = {
   rating: 'Positive',
-  theme: {
+  colorTheme: {
     Positive: '#66c0f4',
     Negative: '#a34c25',
     Mixed: '#b9a06a'
@@ -71,8 +79,10 @@ ReviewRating.defaultProps = {
 };
 
 export const OverflowHidden = styled.div`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 100px;
+  #${props => props.theme.rootId} & {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100px;
+  }
 `;

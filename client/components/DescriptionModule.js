@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 import { DescCol, ImgContainer, TextContainer, DescImg, Desc, DescStats, ReleaseDate } from '../styles/DescriptionModule.styles';
 import { Label } from '../styles/UIUXUtils';
 import { getHumanReadableFromISO, fetchGameInfo, fetchGamePhoto, fetchAllGameReviews, fetchRecentGameReviews } from '../utils';
 import DevOrPubInfo from './DevOrPubInfo';
 import ReviewsInfo from './ReviewsInfo';
+
+/** STYLED COMPONENTS THEME */
+const theme = {
+  rootId: 'game-description'
+};
 
 const DescriptionModule = ({ gameid }) => {
   /**
@@ -89,7 +95,7 @@ const DescriptionModule = ({ gameid }) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <DescCol>
         <ImgContainer>
           <DescImg src={gameThumbnail} alt="Game Thumbnail" />
@@ -120,7 +126,7 @@ const DescriptionModule = ({ gameid }) => {
           </DescStats>
         </TextContainer>
       </DescCol>
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 
