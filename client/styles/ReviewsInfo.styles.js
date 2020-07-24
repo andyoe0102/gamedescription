@@ -58,7 +58,7 @@ export const Reviews = styled.div`
 // Mixed color: #b9a06a (Mixed)
 // Negative color: #a34c25 (Overwhelmingly Negative, Mostly Negative, Very Negative)
 export const ReviewRating = styled.div`
-  #${props => props.colorTheme.rootId} & {
+  #${props => props.theme.rootId} & {
     color: ${props => props.colorTheme[props.rating]};
     display: inline;
     white-space: nowrap;
