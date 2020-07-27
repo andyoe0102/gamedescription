@@ -1,13 +1,27 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: path.resolve(__dirname, 'client', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/'
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Steam Game Description',
+      template: path.resolve(__dirname, 'public', 'template.html')
+    }),
+    new CompressionPlugin({
+      test: /\.(css|js)$/,
+      compressionOptions: {
+        level: 9
+      }
+    })
+  ],
   devtool: 'inline-source-map',
   devServer: {
     proxy: {
@@ -24,7 +38,25 @@ module.exports = {
           path.resolve(__dirname, 'client'),
         ],
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        include: [
+          path.resolve(__dirname, 'client')
+        ],
+        loader: ['style-loader', 'css-loader']
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   }
 };

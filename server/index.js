@@ -2,12 +2,13 @@ require('dotenv').config();
 const path = require('path');
 const fetch = require('node-fetch');
 const express = require('express');
+const expressStaticGzip = require('express-static-gzip');
 const app = express();
 
 const { getGameInfo } = require('../db/index');
 
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, '..', 'public')));
+app.use('/', expressStaticGzip(path.resolve(__dirname, '..', 'public')));
 
 app.get('/app/:gameid', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
