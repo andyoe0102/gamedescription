@@ -28,13 +28,10 @@ export const Company = styled.span`
   }
 `;
 
-export const CompanyWrapper = styled.div.attrs(props => ({
-  style: {
-    whiteSpace: props.width <= 940 || props.expanded ? 'normal' : 'nowrap',
-    overflow: props.width <= 940 || props.expanded ? 'visible' : 'hidden'
-  }
-}))`
+export const CompanyWrapper = styled.div`
   #${props => props.theme.rootId} & {
+    white-space: ${props => props.width <= 940 || props.expanded ? 'normal' : 'nowrap'};
+    overflow: ${props => props.width <= 940 || props.expanded ? 'visible' : 'hidden'};
     text-overflow: ellipsis;
     padding-right: 5px;
   }

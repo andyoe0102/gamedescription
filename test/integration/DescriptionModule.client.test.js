@@ -73,16 +73,4 @@ describe('<DescriptionModule /> integration tests', () => {
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute('src', 'https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
   });
-
-  test('more button disappears on click', async () => {
-    render(<DescriptionModule gameid={1} />);
-    let devBtn = await screen.findByTestId('developer-more-button');
-    expect(devBtn).toBeVisible();
-    await waitFor(() => fireEvent.click(devBtn));
-    expect(devBtn).not.toBeVisible();
-
-    let pubBtn = await screen.findByTestId('publisher-more-button');
-    await waitFor(() => fireEvent.click(pubBtn));
-    expect(pubBtn).not.toBeVisible();
-  });
 });
